@@ -1,0 +1,2 @@
+- check id of your habit buttons in modal if js working
+- have habit icons displays their title on main page
