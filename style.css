@@ -277,7 +277,8 @@ h1{
 
 .legend{
     display: flex;
-    margin-top: 30px;
+    margin-top: 130px;
+
 }
 .legend p{
     font-size: 15px;
@@ -287,4 +288,14 @@ h1{
 .column{
     padding: 10px;
     height: 100px;
+}
+
+
+
+.doneContainer button{
+    font-size: 40px;
+}
+
+.doneContainer.active .done{
+    transform: translateY(0);
 }

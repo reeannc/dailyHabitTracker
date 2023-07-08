@@ -12,7 +12,25 @@ let habitToBeDeleted;
 const deleteBtn = document.querySelector('#delete');
 const contextMenu = document.querySelector('.context-menu');
 
+const doneContainer = document.querySelector('.doneContainer');
+const congratsBtn = document.querySelector('#congratsBtn');
+
 //functions
+
+//confetti event
+// Start
+const start = () => {
+    setTimeout(function() {
+        confetti.start()
+    }, 250); 
+};
+// Stop
+const stop = () => {
+    setTimeout(function() {
+        confetti.stop()
+    }, 5000);
+};
+
 
 const storage = {
     saveTheme(value){
@@ -110,7 +128,13 @@ const ui = {
         const habitToDelete = document.querySelector(`[data-id="${id}"]`);
         habitToDelete.remove();
         ui.refreshHabits();
-      }
+      },
+    openCongrats(){
+        doneContainer.classList.add('active');
+        doneContainer.setAttribute('aria-hidden', 'false');
+        start();
+        stop();
+    },
 }
 
 
@@ -123,7 +147,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const theme = storage.checkTheme();
     if(theme === 'dark') ui.theme();
     
-    //update uI
+    //update ui
     ui.refreshHabits();
   })
 
@@ -191,3 +215,10 @@ deleteBtn.addEventListener('click', () =>{
     ui.deleteHabit(habitToBeDeleted);
     contextMenu.classList.remove('active');
 })
+
+
+//event: confetti animation on button click
+congratsBtn.addEventListener('click', ui.openCongrats);
+
+
+//event: show congrats modal after all habit buttons are completed
