@@ -1,5 +1,8 @@
 - check id of your habit buttons in modal if js working(yes?)
 
-- check if all habits button on main page are completed
-- if all are completed, popup modal with confetti animation
-   
+
+- if all are completed, popup opens w confetti animation
+
+
+
+- check if all are completed , if yes console.log('complete')

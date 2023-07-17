@@ -1,4 +1,5 @@
 //Query Selectors
+const themeContainer = document.querySelector('.theme-container');
 const habits = document.querySelectorAll('.habit-btn');
 const themeBtn = document.querySelector('#theme');
 const modalContainer = document.querySelector('.modal-container');
@@ -12,9 +13,10 @@ let habitToBeDeleted;
 const deleteBtn = document.querySelector('#delete');
 const contextMenu = document.querySelector('.context-menu');
 
-const doneContainer = document.querySelector('.doneContainer');
-const congratsBtn = document.querySelector('#congratsBtn');
+const done = document.querySelector('.done');
+const congrats = document.querySelector('.congrats');
 
+const fakeBtn = document.querySelector('.fakeBtn');
 //functions
 
 //confetti event
@@ -73,8 +75,8 @@ const storage = {
                 currentHabits.splice(index, 1);
             }
             localStorage.setItem('habitsapp.habits', JSON.stringify(currentHabits));
-        })
-    }
+        });
+    },
 }
 
 const ui = {
@@ -115,7 +117,7 @@ const ui = {
         habitContainer.appendChild(habitDiv);
       },
       refreshHabits(){
-        const uiHabits = document.querySelectorAll('.habit');
+        const uiHabits = document.querySelectorAll('.habits');
         uiHabits.forEach(habit => habit.remove());
         const currentHabits = storage.getHabits();
         
@@ -130,10 +132,19 @@ const ui = {
         ui.refreshHabits();
       },
     openCongrats(){
-        doneContainer.classList.add('active');
-        doneContainer.setAttribute('aria-hidden', 'false');
+        //doneContainer.classList.add('active');
+        //doneContainer.setAttribute('aria-hidden', 'false');
         start();
         stop();
+    },
+    checkIfAllComplete(id){
+        const currentHabits = storage.getHabits();
+
+        currentHabits.forEach(habit =>{
+            if(habit.completed === true) {
+                openCongrats();
+            }
+        });
     },
 }
 
@@ -217,8 +228,14 @@ deleteBtn.addEventListener('click', () =>{
 })
 
 
-//event: confetti animation on button click
-congratsBtn.addEventListener('click', ui.openCongrats);
+//event: gif popup + confetti animation on button click
+fakeBtn.addEventListener('click', () =>{
+    done.classList.add('visible');
+    fakeBtn.classList.add('active');
+    themeContainer.classList.add('overlay');
+    ui.openCongrats();
+});
 
 
-//event: show congrats modal after all habit buttons are completed
+//event: check if all habit buttons id are completed
+//document.addEventListener('', ui.checkIfAllComplete);

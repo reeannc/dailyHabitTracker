@@ -290,12 +290,31 @@ h1{
     height: 100px;
 }
 
-
-
-.doneContainer button{
-    font-size: 40px;
+.done{
+    display: none;
+    pointer-events: none;
+    overflow: hidden;
 }
 
-.doneContainer.active .done{
-    transform: translateY(0);
+.done img{
+    size: 40px;
 }
+
+.done.visible{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+}
+
+.fakeBtn{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
+
+.fakeBtn.active{
+    display: none;
+}
+
+
